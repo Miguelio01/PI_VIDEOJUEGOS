@@ -10,40 +10,30 @@ module.exports = (sequelize) => {
 			allowNull: false,
 			primaryKey: true,
 		},
-
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-
 		description: {
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-
 		released: {
 			type: DataTypes.STRING,
-			allowNull: false,
 		},
-
 		rating: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
+			type: DataTypes.DECIMAL,
 		},
-
 		platforms: {
 			type: DataTypes.ARRAY(DataTypes.TEXT),
 			allowNull: false,
 		},
-
 		background_image: {
 			type: DataTypes.TEXT,
-			allowNull: false,
 		},
-
 		createdInDb: {
 			type: DataTypes.BOOLEAN,
-			allowNull: false,
+			defaultValue: true,
 		},
 	});
 };
