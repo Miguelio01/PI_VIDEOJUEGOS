@@ -1,0 +1,16 @@
+.conten {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+
+	background-color: rgba(133, 9, 123, 0.75);
+	box-shadow: 0 8px 32px 0 rgba(103, 107, 156, 0.232);
+	backdrop-filter: blur(7px);
+	padding: 0.5rem;
+	box-sizing: border-box;
+
+	border: 1px solid transparent;
+
+	color: whitesmoke;
+}
