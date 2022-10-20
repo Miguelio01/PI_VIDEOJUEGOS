@@ -1,0 +1,19 @@
+.backgraun {
+	background-image: url(../../assets/LANDING-100.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn {
+	position: absolute;
+	width: 182px;
+	height: 100px;
+	left: 45%;
+	top: 270px;
+}
