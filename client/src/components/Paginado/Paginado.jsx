@@ -8,7 +8,19 @@ export default function Paginado({ gamesPerPage, allGames, paginado }) {
 	}
 	return (
 		<nav>
-			<ul className={s.pagination}>
+			<div>
+				{pageNumbers &&
+					pageNumbers.map((number) => {
+						return (
+							<ul key={number}>
+								<button className={s.pag} onClick={() => paginado(number)}>
+									{number}
+								</button>
+							</ul>
+						);
+					})}
+			</div>
+			{/* <ul className={s.pagination}>
 				{pageNumbers &&
 					pageNumbers.map((number) => (
 						<li key={number} className='page-item'>
@@ -20,7 +32,7 @@ export default function Paginado({ gamesPerPage, allGames, paginado }) {
 							</a>
 						</li>
 					))}
-			</ul>
+			</ul> */}
 		</nav>
 	);
 }

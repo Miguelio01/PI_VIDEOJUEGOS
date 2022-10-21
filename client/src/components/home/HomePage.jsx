@@ -12,7 +12,7 @@ import {
 } from '../../redux/actions/index';
 import { Link } from 'react-router-dom';
 import Car from '../card/Car';
-import Paginado from '../Paginado/Paginado';
+import Paginado from '../paginado/Paginado';
 
 export default function HomePage() {
 	const dispatch = useDispatch();
@@ -63,7 +63,7 @@ export default function HomePage() {
 
 	return (
 		<div className={s.backg}>
-			<div className={s.pag}>
+			<div>
 				<Paginado
 					videogamesPerPage={gamesPerPage}
 					allVideogames={allVideogames.length}
