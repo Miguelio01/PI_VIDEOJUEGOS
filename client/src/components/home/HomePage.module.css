@@ -9,10 +9,9 @@
 	flex-direction: column;
 }
 
-.img {
-	width: 10%;
-	/* height: 10%; */
+.cads {
 	display: flex;
-	margin-top: 1.5em;
-	margin-left: 45%;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 2em;
 }
