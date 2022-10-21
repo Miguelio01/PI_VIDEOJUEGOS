@@ -63,7 +63,15 @@ export default function HomePage() {
 
 	return (
 		<div className={s.backg}>
-			<div>
+			<div className={s.pag}>
+				<Paginado
+					videogamesPerPage={gamesPerPage}
+					allVideogames={allVideogames.length}
+					paginado={paginate}
+				/>
+			</div>
+
+			<div className={s.cads}>
 				{currentGames &&
 					currentGames.map((game) => {
 						return (
