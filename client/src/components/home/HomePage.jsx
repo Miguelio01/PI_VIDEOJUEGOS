@@ -14,19 +14,34 @@ import {
 import Car from '../card/Car';
 import Paginado from '../paginado/Paginado';
 import image from '../../assets/BG-02.png';
+import Loading from '../loading/Loading';
+import NotFound from '../notFound/NotFound';
 
 export default function HomePage() {
 	const dispatch = useDispatch();
 	const allVideogames = useSelector((state) => state.videogames);
 	const allGenres = useSelector((state) => state.genres);
+	const [loading, setLoading] = useState(true);
+
 	const [currentPage, setCurrentPage] = useState(1);
 	const [setOrden] = useState('');
-	const [gamesPerPage] = useState(15);
+	const [gamesPerPage] = useState(10);
+
 	const indexOfLastGame = currentPage * gamesPerPage;
 	const indexOfFirstGame = indexOfLastGame - gamesPerPage;
 	const currentGames = allVideogames.slice(indexOfFirstGame, indexOfLastGame);
 
+	if (allVideogames.length > 0 && loading) {
+		setLoading(false);
+	}
+
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
+	const netPrePage = () => setCurrentPage(currentPage + 1);
+	const backPrepage = () => {
+		if (currentPage > 1) {
+			setCurrentPage(currentPage - 1);
+		}
+	};
 
 	useEffect(() => {
 		dispatch(getVideogames());
@@ -100,11 +115,14 @@ export default function HomePage() {
 					videogamesPerPage={gamesPerPage}
 					allVideogames={allVideogames.length}
 					paginado={paginate}
+					netPrePage={netPrePage}
+					backPrepage={backPrepage}
 				/>
 			</div>
 
 			<div className={s.cads}>
-				{currentGames &&
+				{currentGames.length > 0 && !loading ? (
+					currentGames &&
 					currentGames.map((game) => {
 						return (
 							<div key={game.id}>
@@ -117,7 +135,12 @@ export default function HomePage() {
 								/>
 							</div>
 						);
-					})}
+					})
+				) : !currentGames.length > 0 && loading ? (
+					<Loading />
+				) : (
+					<NotFound />
+				)}
 				,
 			</div>
 		</div>
