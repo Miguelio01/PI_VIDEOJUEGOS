@@ -12,7 +12,9 @@ export default function Car({ id, background_image, name, genres }) {
 			<div className={s.info}>
 				<h3>{name}</h3>
 				<p>{genres}</p>
-				<Link to={`/videogame/${id}`}>Ver más</Link>
+				<Link to={`/detail/${id}`} className={s.links}>
+					Ver más
+				</Link>
 			</div>
 		</div>
 	);

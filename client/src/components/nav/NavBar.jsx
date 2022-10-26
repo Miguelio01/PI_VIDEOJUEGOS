@@ -7,10 +7,16 @@ class NavBar extends React.Component {
 	render() {
 		return (
 			<div className={s.conten}>
-				<img src={logo} alt='' height='50px' />
-				<Link to='/'>Home</Link>
-				<Link to='/videogames'>Videogames</Link>
-				<Link to='/create'>Create</Link>
+				<Link to='/'>
+					<img src={logo} alt='' height='50px' />
+				</Link>
+				<Link to='/home' className={s.links}>
+					Home
+				</Link>
+				{/* <Link to='/detail/:id'>Videogames</Link> */}
+				<Link to='/create' className={s.links}>
+					Create
+				</Link>
 				<SearchBar />
 			</div>
 		);

@@ -1,0 +1,55 @@
+.bg {
+	background-image: url(../../assets/BG-02.png);
+	background-size: cover;
+	background-repeat: repeat;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 20px;
+}
+.conten {
+	display: flex;
+	flex-direction: row;
+	margin-top: 20px;
+	align-content: space-between;
+}
+.cont {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	align-items: center;
+	color: whitesmoke;
+	width: 50%;
+}
+.cimg {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	width: 50%;
+	color: whitesmoke;
+	/* margin-top: 10em; */
+}
+.img {
+	border-radius: 2.5rem;
+	padding: 0.9rem;
+}
+.ctext {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 0.1rem;
+
+	margin-left: 0.5rem;
+}
+
+.image {
+	position: fixed;
+	object-fit: cover;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	height: 100vh;
+	width: 100%;
+	align-content: center;
+}

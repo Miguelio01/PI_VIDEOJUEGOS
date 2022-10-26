@@ -5,3 +5,10 @@
 	margin: 20px 0;
 	color: whitesmoke;
 }
+
+.nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
