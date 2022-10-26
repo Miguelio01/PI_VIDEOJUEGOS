@@ -107,13 +107,15 @@ export default function HomePage() {
 				{currentGames &&
 					currentGames.map((game) => {
 						return (
-							<Car
-								key={game.id}
-								id={game.id}
-								name={game.name}
-								background_image={game.background_image}
-								genres={game.genres}
-							/>
+							<div key={game.id}>
+								<Car
+									key={game.id}
+									id={game.id}
+									name={game.name}
+									background_image={game.background_image}
+									genres={game.genres}
+								/>
+							</div>
 						);
 					})}
 				,
