@@ -11,9 +11,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url(../../assets/BG-02.png);
+	/* background-image: url(../../assets/BG-02.png);
 	background-size: cover;
-	background-repeat: repeat;
+	background-repeat: repeat; */
 }
 
 .loader span {

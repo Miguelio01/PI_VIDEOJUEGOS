@@ -76,11 +76,19 @@ function rootReducer(state = initialState, action) {
 		case ORDER_BY_NAME:
 			let sortArray =
 				action.payload === 'asc'
-					? state.videogames.sort((a, b) => a.name.localeCompare(b.name))
-					: state.videogames.sort((a, b) => b.name.localeCompare(a.name));
+					? state.videogames.sort(function (a, b) {
+							if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+							if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+							return 0;
+					  })
+					: state.videogames.sort(function (a, b) {
+							if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+							if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+							return 0;
+					  });
 			return {
 				...state,
-				videogames: sortArray,
+				videogames: action.payload === 'All' ? state.allVideogames : sortArray,
 			};
 
 		case ORDER_BY_RATING:

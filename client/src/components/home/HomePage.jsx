@@ -138,7 +138,7 @@ export default function HomePage() {
 			</div>
 			<br />
 
-			<div>
+			{/* <div>
 				<Paginado
 					gamesPerPage={gamesPerPage}
 					allVideogames={allVideogames.length}
@@ -146,7 +146,7 @@ export default function HomePage() {
 					netPrePage={netPrePage}
 					backPrepage={backPrepage}
 				/>
-			</div>
+			</div> */}
 		</div>
 	);
 }
