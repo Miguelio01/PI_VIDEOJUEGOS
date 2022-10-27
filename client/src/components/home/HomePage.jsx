@@ -24,7 +24,7 @@ export default function HomePage() {
 	const [loading, setLoading] = useState(true);
 
 	const [currentPage, setCurrentPage] = useState(1);
-	const [setOrden] = useState('');
+	const [orden, setOrden] = useState('');
 	const [gamesPerPage] = useState(10);
 
 	const indexOfLastGame = currentPage * gamesPerPage;
@@ -36,8 +36,8 @@ export default function HomePage() {
 	}
 
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
-	const netPrePage = () => setCurrentPage(currentPage + 1);
-	const backPrepage = () => {
+	const netxPage = () => setCurrentPage(currentPage + 1);
+	const backPage = () => {
 		if (currentPage > 1) {
 			setCurrentPage(currentPage - 1);
 		}
@@ -108,8 +108,8 @@ export default function HomePage() {
 					gamesPerPage={gamesPerPage}
 					allVideogames={allVideogames.length}
 					paginate={paginate}
-					netPrePage={netPrePage}
-					backPrepage={backPrepage}
+					netPrePage={netxPage}
+					backPrepage={backPage}
 				/>
 			</div>
 

@@ -50,12 +50,25 @@ function rootReducer(state = initialState, action) {
 				videogames: action.payload,
 			};
 
+		// case FILTER_BY_GENRE:
+		// 	const allVideogamesGenres = state.allVideogames;
+		// 	const genresFilter =
+		// 		action.payload === 'All'
+		// 			? allVideogamesGenres
+		// 			: allVideogamesGenres.filter((v) => v.genres.include(action.payload));
+		// 	return {
+		// 		...state,
+		// 		videogames: genresFilter,
+		// 	};
 		case FILTER_BY_GENRE:
 			const allVideogamesGenres = state.allVideogames;
 			const genresFilter =
 				action.payload === 'All'
 					? allVideogamesGenres
-					: allVideogamesGenres.filter((v) => v.genres.include(action.payload));
+					: allVideogamesGenres.filter((e) =>
+							e.genres.includes(action.payload),
+					  );
+			console.log(genresFilter);
 			return {
 				...state,
 				videogames: genresFilter,

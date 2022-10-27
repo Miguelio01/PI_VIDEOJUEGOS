@@ -1,6 +1,6 @@
 .btn {
-	width: 7em;
-	height: 2.4em;
+	width: 5em;
+	height: 2em;
 	font-size: 15px;
 	font-weight: bold;
 	background: transparent;
@@ -42,10 +42,10 @@
 }
 
 .pagination {
+	display: flex;
+	flex-direction: row;
 	justify-content: center;
-	border-radius: 5px;
-	font-size: 30px;
-	font-weight: bold;
+	align-items: center;
 	padding: 5px;
 }
 
@@ -56,18 +56,33 @@
 }
 
 .pag {
-	width: 15px;
-	height: 30px;
-	margin: 3px;
-	border-radius: 10px;
-	text-align: center;
-	cursor: pointer;
-	background-image: linear-gradient(to top, #442105 0%, #fff 80%, #fdfdfd 100%);
+	width: 2em;
+	height: 1.5em;
+	font-size: 15px;
+	font-weight: bold;
+	background: transparent;
+	border: none;
+	position: relative;
+	color: #fcfffd;
+	z-index: 1;
 }
 
-.pag:hover {
-	box-shadow: inset 0 0 20px rgba(124, 124, 124, 0.851),
-		0 0 20px rgba(95, 95, 95, 0.732);
-	outline-offset: 80px;
-	text-shadow: 1px 1px 6px #fff;
+.pag:after,
+.pag::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: -99999;
+	transition: all 0.4s;
+}
+
+.pag::before {
+	transform: translate(0%, 0%);
+	width: 100%;
+	height: 100%;
+	background: rgba(24, 255, 255, 0.63);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(4px);
+	border-radius: 10px;
 }
