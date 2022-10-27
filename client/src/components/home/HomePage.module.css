@@ -1,10 +1,5 @@
 .backg {
-	/* background-image: url(../../assets/BG-02.png); */
-	/* background-size: cover;
-	background-repeat: repeat; */
 	background-position: center;
-	/* height: 100vh; */
-	/* width: 100%; */
 	display: flex;
 	flex-direction: column;
 }
@@ -30,4 +25,19 @@
 	height: 100vh;
 	width: 100%;
 	align-content: center;
+}
+.filtro {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	background-color: rgba(133, 9, 123, 0.56);
+	box-shadow: 0 8px 32px 0 rgba(219, 155, 221, 0.442);
+	backdrop-filter: blur(3px);
+	padding: 0.5rem;
+	box-sizing: border-box;
+
+	border: 1px solid transparent;
+
+	color: whitesmoke;
 }

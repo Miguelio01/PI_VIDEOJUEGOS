@@ -12,7 +12,7 @@ import {
 } from '../../redux/actions/index';
 // import { Link } from 'react-router-dom';
 import Car from '../card/Car';
-import Paginado from '../paginado/Paginado';
+import Paginado from '../Paginado/Paginado';
 import image from '../../assets/BG-02.png';
 import Loading from '../loading/Loading';
 import NotFound from '../notFound/NotFound';
@@ -29,7 +29,7 @@ export default function HomePage() {
 
 	const indexOfLastGame = currentPage * gamesPerPage;
 	const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-	const currentGames = allVideogames.slice(indexOfFirstGame, indexOfLastGame);
+	const currentGames = allVideogames?.slice(indexOfFirstGame, indexOfLastGame);
 
 	if (allVideogames.length > 0 && loading) {
 		setLoading(false);
@@ -44,8 +44,8 @@ export default function HomePage() {
 	};
 
 	useEffect(() => {
-		dispatch(getVideogames());
 		dispatch(getGenres());
+		dispatch(getVideogames());
 	}, [dispatch]);
 
 	// function handleClick(e) {
@@ -80,7 +80,7 @@ export default function HomePage() {
 	return (
 		<div className={s.backg}>
 			<img className={s.image} src={image} alt='' />
-			<div>
+			<div className={s.filtro}>
 				<select onChange={(e) => handleOrderName(e)}>
 					<option value='asc'>A-Z</option>
 					<option value='desc'>Z-A</option>
@@ -102,19 +102,12 @@ export default function HomePage() {
 					<option value='created'>Creados</option>
 					<option value='api'>Existente</option>
 				</select>
-
-				{/* <button
-					onClick={(e) => {
-						handleClick(e);
-					}}>
-					Volver a cargar
-				</button> */}
 			</div>
 			<div>
 				<Paginado
-					videogamesPerPage={gamesPerPage}
+					gamesPerPage={gamesPerPage}
 					allVideogames={allVideogames.length}
-					paginado={paginate}
+					paginate={paginate}
 					netPrePage={netPrePage}
 					backPrepage={backPrepage}
 				/>
@@ -142,6 +135,17 @@ export default function HomePage() {
 					<NotFound />
 				)}
 				,
+			</div>
+			<br />
+
+			<div>
+				<Paginado
+					gamesPerPage={gamesPerPage}
+					allVideogames={allVideogames.length}
+					paginate={paginate}
+					netPrePage={netPrePage}
+					backPrepage={backPrepage}
+				/>
 			</div>
 		</div>
 	);

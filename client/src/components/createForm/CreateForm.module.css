@@ -9,7 +9,6 @@
 	background-image: url(../../assets/BG-02.png);
 	background-size: cover;
 	background-repeat: repeat;
-	padding: 20px;
 }
 
 .form {
@@ -17,7 +16,8 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin-top: 5rem;
+	margin-top: 1rem;
+	padding: 100px;
 }
 
 .image {

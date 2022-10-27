@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetail } from '../../redux/actions/index';
 import { useEffect } from 'react';
@@ -82,10 +82,11 @@ export default function Detail() {
 						</div>
 					</div>
 
-					{/* 
 					<button className={s.btn}>
-						<Link to='/home'>Home</Link>
-					</button> */}
+						<Link className={s.link} to='/home'>
+							Home
+						</Link>
+					</button>
 				</div>
 			</div>
 		</div>

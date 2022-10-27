@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Paginado.module.css';
 
-export default function Paginado({
+export default function Pagination({
 	gamesPerPage,
 	allGames,
 	paginado,
@@ -17,20 +17,20 @@ export default function Paginado({
 		<nav className={s.nav}>
 			<div className={s.pagination}>
 				<button onClick={backPrePage} className={s.btn}>
-					back
+					Prev
 				</button>
 				{pageNumbers &&
-					pageNumbers.map((n) => {
+					pageNumbers.map((number) => {
 						return (
-							<ul key={n}>
-								<button className={s.btn} onClick={() => paginado(n)}>
-									{n}
+							<ul key={number}>
+								<button className={s.number} onClick={() => paginado(number)}>
+									{number}
 								</button>
 							</ul>
 						);
 					})}
 				<button onClick={netPrePage} className={s.btn}>
-					next
+					Next
 				</button>
 			</div>
 		</nav>
