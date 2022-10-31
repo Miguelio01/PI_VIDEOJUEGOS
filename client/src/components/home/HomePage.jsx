@@ -7,8 +7,10 @@ import {
 	filterByCreated,
 	orderByName,
 	orderByRating,
+	orderByYear,
 	getGenres,
 	filterByGenre,
+	cleanData,
 } from '../../redux/actions/index';
 // import { Link } from 'react-router-dom';
 import Car from '../card/Car';
@@ -46,6 +48,7 @@ export default function HomePage() {
 	useEffect(() => {
 		dispatch(getGenres());
 		dispatch(getVideogames());
+		return dispatch(cleanData());
 	}, [dispatch]);
 
 	// function handleClick(e) {
@@ -77,30 +80,54 @@ export default function HomePage() {
 		setCurrentPage(1);
 	}
 
+	function handleOrderYear(e) {
+		e.preventDefault();
+		dispatch(orderByYear(e.target.value));
+		setOrden(`Ordenado ${e.target.value}`);
+		setCurrentPage(1);
+	}
+
 	return (
 		<div className={s.backg}>
 			<img className={s.image} src={image} alt='' />
 			<div className={s.filtro}>
-				<select onChange={(e) => handleOrderName(e)}>
-					<option value='asc'>A-Z</option>
-					<option value='desc'>Z-A</option>
-				</select>
-				<select onChange={(e) => handleOrderRating(e)}>
-					<option value='asc'>Ascendente</option>
-					<option value='desc'>Descendente</option>
-				</select>
-				<select onChange={(e) => handleFilterGenre(e)}>
-					<option value='All'>Todos</option>
-					{allGenres?.map((e) => (
-						<option key={e} value={e}>
-							{e}
-						</option>
-					))}
-				</select>
+				<div className={s.contenFil}>
+					<label className={s.label}>Alfabetico</label>
+					<select onChange={(e) => handleOrderName(e)}>
+						<option value='null'>Select</option>
+						<option value='asc'>A-Z</option>
+						<option value='desc'>Z-A</option>
+					</select>
+				</div>
+
+				<div className={s.contenFil}>
+					<label className={s.label}>Rating</label>
+					<select onChange={(e) => handleOrderRating(e)}>
+						<option value='asc'>Ascendente</option>
+						<option value='desc'>Descendente</option>
+					</select>
+				</div>
+
+				<div className={s.contenFil}>
+					<label className={s.label}>Año</label>
+					<select onChange={(e) => handleFilterGenre(e)}>
+						<option value='All'>Todos</option>
+						{allGenres?.map((e) => (
+							<option key={e} value={e}>
+								{e}
+							</option>
+						))}
+					</select>
+				</div>
+
 				<select onChange={(e) => handleFilterCreated(e)}>
 					<option value='All'>Todos</option>
 					<option value='created'>Creados</option>
 					<option value='api'>Existente</option>
+				</select>
+				<select onChange={(e) => handleOrderYear(e)}>
+					<option value='asc'>Nuevos</option>
+					<option value='desc'>Antiguos</option>
 				</select>
 			</div>
 			<div>

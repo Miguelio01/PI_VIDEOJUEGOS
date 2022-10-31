@@ -8,6 +8,8 @@ import {
 	FILTER_BY_CREATED,
 	ORDER_BY_RATING,
 	ORDER_BY_NAME,
+	ORDER_BY_YEAR,
+	CLEAN_DATA,
 } from '../actions/index';
 
 const initialState = {
@@ -15,6 +17,7 @@ const initialState = {
 	allVideogames: [],
 	genres: [],
 	detail: [],
+	released: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -112,6 +115,32 @@ function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				videogames: sortArrayRating,
+			};
+
+		case ORDER_BY_YEAR:
+			let sortArrYear =
+				action.payload === 'desc'
+					? state.videogames.sort(function (a, b) {
+							if (a.released.toLowerCase() > b.released.toLowerCase()) return 1;
+							if (a.released.toLowerCase() < b.released.toLowerCase())
+								return -1;
+							return 0;
+					  })
+					: state.videogames.sort(function (a, b) {
+							if (a.released.toLowerCase() < b.released.toLowerCase()) return 1;
+							if (a.released.toLowerCase() > b.released.toLowerCase())
+								return -1;
+							return 0;
+					  });
+			return {
+				...state,
+				released: sortArrYear,
+			};
+
+		case CLEAN_DATA:
+			return {
+				...state,
+				detail: action.payload,
 			};
 
 		default:

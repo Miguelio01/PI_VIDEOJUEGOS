@@ -9,6 +9,8 @@ export const FILTER_BY_GENRE = 'FILTER_BY_GENRE';
 export const FILTER_BY_CREATED = 'FILTER_BY_CREATED';
 export const ORDER_BY_RATING = 'ORDER_BY_RATING';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
+export const ORDER_BY_YEAR = 'ORDER_BY_YEAR';
+export const CLEAN_DATA = 'CLEAN_DATA';
 
 //GET VIDEOGAMES
 export function getVideogames() {
@@ -118,5 +120,24 @@ export function orderByName(payload) {
 	return {
 		type: ORDER_BY_NAME,
 		payload,
+	};
+}
+
+//ORDER by
+
+export function orderByYear(payload) {
+	return {
+		type: ORDER_BY_YEAR,
+		payload,
+	};
+}
+
+//CLEAN DATA
+export function cleanData() {
+	return function (dispatch) {
+		dispatch({
+			type: CLEAN_DATA,
+			payload: {},
+		});
 	};
 }

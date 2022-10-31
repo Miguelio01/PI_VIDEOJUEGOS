@@ -41,3 +41,29 @@
 
 	color: whitesmoke;
 }
+
+.contenFil {
+	display: flex;
+	flex-direction: column;
+}
+
+.label {
+	color: whitesmoke;
+	font-size: 1em;
+	font-weight: bold;
+	padding-bottom: 0.5em;
+}
+
+select-selected {
+	background-color: DodgerBlue;
+}
+
+select {
+	background-color: rgba(2, 217, 255, 0.56);
+	box-shadow: 0 8px 32px 0 rgba(219, 155, 221, 0.442);
+	backdrop-filter: blur(3px);
+	border: 1px solid transparent;
+	border-radius: 5px;
+	padding: 2px;
+	color: whitesmoke;
+}
