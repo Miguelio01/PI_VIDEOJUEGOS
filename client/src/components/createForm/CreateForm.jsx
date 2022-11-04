@@ -6,36 +6,36 @@ import s from './CreateForm.module.css';
 import image from '../../assets/BG-02.png';
 import logo from '../../assets/Logo.png';
 
-function validate(input) {
-	let errors = {};
-	input.name ? (errors.name = '') : (errors.name = 'Debe nombrar el juego');
-	input.description
-		? (errors.description = '')
-		: (errors.description = 'Debe proporcionar un descripción');
-	input.released
-		? (errors.released = '')
-		: (errors.released = 'Debes proporcionar una fecha');
-	input.platforms === 0
-		? (errors.platforms = 'Debes seleccionar al menos una plataforma')
-		: (errors.platforms = '');
-	input.genres === 0
-		? (errors.genres = 'Debes seleccionar almenos uno de los generos')
-		: (errors.genres = '');
+// function validate(input) {
+// 	let errors = {};
+// 	input.name ? (errors.name = '') : (errors.name = 'Debe nombrar el juego');
+// 	input.description
+// 		? (errors.description = '')
+// 		: (errors.description = 'Debe proporcionar un descripción');
+// 	input.released
+// 		? (errors.released = '')
+// 		: (errors.released = 'Debes proporcionar una fecha');
+// 	input.platforms === 0
+// 		? (errors.platforms = 'Debes seleccionar al menos una plataforma')
+// 		: (errors.platforms = '');
+// 	input.genres === 0
+// 		? (errors.genres = 'Debes seleccionar almenos uno de los generos')
+// 		: (errors.genres = '');
 
-	if (!input.rating) {
-		errors.rating = 'You must provide a healthScore';
-	} else if (input.rating > 5 || input.rating < 0) {
-		errors.rating = 'The range must be between 1 and 100';
-	}
-	const imgValidate = /(https?:\/\/.*\.(?:png|jpg))/;
-	if (!input.background_image || !imgValidate.test(input.background_image)) {
-		errors.background_image = 'Insertar URL valida de la imagen';
-	} else {
-		errors.background_image = '';
-	}
-	return errors;
-}
+// 	if (!input.rating) {
+// 		errors.rating = 'You must provide a healthScore';
+// 	} else if (input.rating > 5 || input.rating < 0) {
+// 		errors.rating = 'The range must be between 1 and 100';
+// 	}
+// 	const imgValidate = /(https?:\/\/.*\.(?:png|jpg))/;
+// 	if (!input.background_image || !imgValidate.test(input.background_image)) {
+// 		errors.background_image = 'Insertar URL valida de la imagen';
+// 	} else {
+// 		errors.background_image = '';
+// 	}
 
+// return errors;
+// }
 export default function CreateForm() {
 	const dispatch = useDispatch();
 	const genres = useSelector((state) => state.genres);
