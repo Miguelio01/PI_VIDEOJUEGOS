@@ -14,7 +14,7 @@ import {
 } from '../../redux/actions/index';
 // import { Link } from 'react-router-dom';
 import Car from '../card/Car';
-import Paginado from '../Paginado/Paginado';
+import Paginado from '../paginado/Paginado';
 import image from '../../assets/BG-02.png';
 import Loading from '../loading/Loading';
 import NotFound from '../notFound/NotFound';
@@ -103,13 +103,14 @@ export default function HomePage() {
 				<div className={s.contenFil}>
 					<label className={s.label}>Rating</label>
 					<select onChange={(e) => handleOrderRating(e)}>
+						<option value='null'>Select</option>
 						<option value='asc'>Ascendente</option>
 						<option value='desc'>Descendente</option>
 					</select>
 				</div>
 
 				<div className={s.contenFil}>
-					<label className={s.label}>Año</label>
+					<label className={s.label}>Generos</label>
 					<select onChange={(e) => handleFilterGenre(e)}>
 						<option value='All'>Todos</option>
 						{allGenres?.map((e) => (
@@ -120,15 +121,23 @@ export default function HomePage() {
 					</select>
 				</div>
 
-				<select onChange={(e) => handleFilterCreated(e)}>
-					<option value='All'>Todos</option>
-					<option value='created'>Creados</option>
-					<option value='api'>Existente</option>
-				</select>
-				<select onChange={(e) => handleOrderYear(e)}>
-					<option value='asc'>Nuevos</option>
-					<option value='desc'>Antiguos</option>
-				</select>
+				<div className={s.contenFil}>
+					<label className={s.label}>Creado</label>
+					<select onChange={(e) => handleFilterCreated(e)}>
+						<option value='All'>Todos</option>
+						<option value='created'>Creados</option>
+						<option value='api'>Existente</option>
+					</select>
+				</div>
+
+				<div className={s.contenFil}>
+					<label className={s.label}>Año</label>
+					<select onChange={(e) => handleOrderYear(e)}>
+						<option value='null'>Select</option>
+						<option value='asc'>Nuevos</option>
+						<option value='desc'>Antiguos</option>
+					</select>
+				</div>
 			</div>
 			<div>
 				<Paginado

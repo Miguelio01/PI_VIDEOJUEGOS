@@ -1,23 +1,97 @@
 .conten {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
 	color: whitesmoke;
-	background-image: url(../../assets/BG-02.png);
+	/* background-image: url(../../assets/BG-02.png);
 	background-size: cover;
-	background-repeat: repeat;
+	background-repeat: space; */
+}
+
+h2 {
+	font-size: 1.8rem;
+	justify-self: start;
+}
+
+.logo {
+	width: 90%;
+}
+
+.crea {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-left: 8.5%;
+	padding-bottom: 10%;
+	padding-top: 5%;
+	width: 140%;
+	background-image: url(../../assets/Form.png);
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .form {
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	width: 100%;
+}
+
+label {
+	color: whitesmoke;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+textarea {
+	width: 100%;
+	height: 100px;
+	border-radius: 8px;
+	border: none;
+	padding: 10px;
+}
+
+.input {
+	width: 100%;
+	height: 19px;
+	border-radius: 5px;
+	border: none;
+}
+
+.che {
+	display: flex;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(12, 0.4fr);
+	grid-gap: 5.5px;
+	grid-auto-rows: minmax(10px, auto);
+}
+
+.uno {
+	font-size: smaller;
+	grid-column: 3;
+	grid-row: 2;
+}
+
+.orden1 {
+	display: flex;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	margin-top: 1rem;
-	padding: 100px;
+}
+
+.orden2 {
+	display: flex;
+	flex-direction: column;
+	padding-left: 50px;
+	margin-right: 50px;
 }
 
 .image {
@@ -29,4 +103,42 @@
 	height: 100vh;
 	width: 100%;
 	align-content: center;
+}
+
+.btnS {
+	width: 7em;
+	height: 2.4em;
+	font-size: 15px;
+	font-weight: bold;
+	background: transparent;
+	border: none;
+	position: relative;
+	color: #fcfffd;
+	z-index: 1;
+}
+
+.btnS:after,
+.btnS::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: -99999;
+	transition: all 0.4s;
+}
+
+.btnS::before {
+	transform: translate(0%, 0%);
+	width: 100%;
+	height: 100%;
+	background: rgba(65, 8, 85, 0.63);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(4px);
+	border-radius: 10px;
+}
+
+.btnS:hover::after {
+	background-color: rgb(132, 203, 171);
+	transform: scaleX(1.4) scaleY(1.5);
+	opacity: 0;
 }

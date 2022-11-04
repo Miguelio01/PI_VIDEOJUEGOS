@@ -4,6 +4,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGenres, postVideogame } from '../../redux/actions/index.js';
 import s from './CreateForm.module.css';
 import image from '../../assets/BG-02.png';
+import logo from '../../assets/Logo.png';
+
+function validate(input) {
+	let errors = {};
+	input.name ? (errors.name = '') : (errors.name = 'Debe nombrar el juego');
+	input.description
+		? (errors.description = '')
+		: (errors.description = 'Debe proporcionar un descripción');
+	input.released
+		? (errors.released = '')
+		: (errors.released = 'Debes proporcionar una fecha');
+	input.platforms === 0
+		? (errors.platforms = 'Debes seleccionar al menos una plataforma')
+		: (errors.platforms = '');
+	input.genres === 0
+		? (errors.genres = 'Debes seleccionar almenos uno de los generos')
+		: (errors.genres = '');
+
+	if (!input.rating) {
+		errors.rating = 'You must provide a healthScore';
+	} else if (input.rating > 5 || input.rating < 0) {
+		errors.rating = 'The range must be between 1 and 100';
+	}
+	const imgValidate = /(https?:\/\/.*\.(?:png|jpg))/;
+	if (!input.background_image || !imgValidate.test(input.background_image)) {
+		errors.background_image = 'Insertar URL valida de la imagen';
+	} else {
+		errors.background_image = '';
+	}
+	return errors;
+}
 
 export default function CreateForm() {
 	const dispatch = useDispatch();
@@ -11,6 +42,7 @@ export default function CreateForm() {
 
 	const allPlatforms = [
 		'PC',
+		'Mac',
 		'PlayStation',
 		'Xbox',
 		'Nintendo Switch',
@@ -26,9 +58,9 @@ export default function CreateForm() {
 		'Commodore',
 		'Atari',
 		'Genesis',
-		' SEGA',
+		'SEGA',
 		'Dreamcast',
-		'3DO',
+		'3Ds',
 		'Jaguar',
 		'Game Gear',
 		'Neo Geo',
@@ -103,92 +135,122 @@ export default function CreateForm() {
 	return (
 		<div className={s.conten}>
 			<img className={s.image} src={image} alt='' />
+			<div className={s.logo}>
+				<img className={s.logo} src={logo} alt='' />
+			</div>
+			<div className={s.crea}>
+				<form className={s.form} onSubmit={handleSubmit}>
+					<h2>Crear VideoJuego!</h2>
+					<div className={s.orden1}>
+						<div className={s.orden2}>
+							<div>
+								<label> Nombre:</label>
+								<input
+									className={s.input}
+									type='text'
+									placeholder='Nombre del Juego '
+									onChange={(e) =>
+										setObjeto({ ...objeto, name: e.target.value })
+									}
+								/>
+							</div>
+							<br />
+							<div>
+								<label>Descripcion:</label>
+								<textarea
+									type='text'
+									placeholder='Descripcion del Juego'
+									onChange={(e) =>
+										setObjeto({ ...objeto, description: e.target.value })
+									}
+								/>
+							</div>
+							<br />
+						</div>
+						<div className={s.orden2}>
+							<div>
+								<label>Imagen:</label>
+								<input
+									className={s.input}
+									type='text'
+									placeholder='URL de la imagen'
+									onChange={(e) =>
+										setObjeto({ ...objeto, background_image: e.target.value })
+									}
+								/>
+							</div>
+							<br />
+							<div>
+								<label>Fecha de Lanzamiento:</label>
+								<input
+									className={s.input}
+									type='date'
+									onChange={(e) =>
+										setObjeto({ ...objeto, released: e.target.value })
+									}
+								/>
+							</div>
+							<br />
+							<div>
+								<label>Rating:</label>
+								<input
+									className={s.input}
+									type='number'
+									placeholder='de 0 a 5'
+									onChange={(e) =>
+										setObjeto({ ...objeto, rating: e.target.value })
+									}
+								/>
+							</div>
+							<br />
+						</div>
+					</div>
 
-			<h1>Crear VideoJuego!</h1>
-
-			<form onSubmit={handleSubmit}>
-				<div className={s.form}>
-					<div>
-						<label> Nombre:</label>
-						<input
-							type='text'
-							onChange={(e) => setObjeto({ ...objeto, name: e.target.value })}
-						/>
-					</div>
-					<br />
-					<div>
-						<label>Descripcion:</label>
-						<input
-							type='text'
-							onChange={(e) =>
-								setObjeto({ ...objeto, description: e.target.value })
-							}
-						/>
-					</div>
-					<br />
-					<div>
-						<label>Imagen:</label>
-						<input
-							type='text'
-							onChange={(e) =>
-								setObjeto({ ...objeto, background_image: e.target.value })
-							}
-						/>
-					</div>
-					<br />
-					<div>
-						<label>Fecha de Lanzamiento:</label>
-						<input
-							type='date'
-							onChange={(e) =>
-								setObjeto({ ...objeto, released: e.target.value })
-							}
-						/>
-					</div>
-					<br />
-					<div>
-						<label>Rating:</label>
-						<input
-							type='number'
-							onChange={(e) => setObjeto({ ...objeto, rating: e.target.value })}
-						/>
-					</div>
-					<br />
-					<div>
+					<div className={s.che}>
 						<label>Generos:</label>
-						{genres?.map((e) => (
-							<label key={e}>
-								<input
-									type='checkbox'
-									name={e}
-									value={e}
-									onChange={handleGenres}
-								/>
-								{e}
-							</label>
-						))}
+						<div className={s.grid}>
+							{genres?.map((e) => (
+								<div key={e.id}>
+									<p key={e} className={s.uno}>
+										<input
+											type='checkbox'
+											name={e}
+											value={e}
+											onChange={handleGenres}
+										/>
+										{e}
+									</p>
+								</div>
+							))}
+						</div>
 					</div>
 					<br />
-					<div>
+					<div className={s.che}>
 						<label>Plataformas:</label>
-						{allPlatforms.map((e) => (
-							<label key={e}>
-								<input
-									type='checkbox'
-									name={e}
-									value={e}
-									onChange={handlePlatforms}
-								/>
-								{e}
-							</label>
-						))}
+						<div className={s.grid}>
+							{allPlatforms.map((e) => (
+								<div key={e.id}>
+									<p key={e} className={s.uno}>
+										<input
+											type='checkbox'
+											name={e}
+											value={e}
+											onChange={handlePlatforms}
+										/>
+										{e}
+									</p>
+								</div>
+							))}
+						</div>
 					</div>
 					<br />
 					<div>
-						<button type='submit'>Agregar Videojuego!</button>
+						<button className={s.btnS} type='submit'>
+							Agregar
+						</button>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	);
 }
