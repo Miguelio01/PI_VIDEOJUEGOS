@@ -8,6 +8,17 @@ import logo from '../../assets/Logo.png';
 
 // function validate(input) {
 // 	let errors = {};
+
+// 	errors.button = false;
+// 	if (input.name || input.name === '') {
+// 		errors.name = 'Debes ingresar el nombre del Videojuego';
+// 		errors.button = true;
+// 	}
+// 	return errors;
+// }
+
+// function validate(input) {
+// 	let errors = {};
 // 	input.name ? (errors.name = '') : (errors.name = 'Debe nombrar el juego');
 // 	input.description
 // 		? (errors.description = '')
@@ -79,6 +90,8 @@ export default function CreateForm() {
 		genres: [],
 		background_image: '',
 	});
+
+	const handleSelect = (e) => {};
 
 	const handlePlatforms = (e) => {
 		if (e.target.checked) {
