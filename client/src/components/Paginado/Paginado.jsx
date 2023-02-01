@@ -4,35 +4,54 @@ import s from './Paginado.module.css';
 export default function pagination({
 	allVideogames,
 	gamesPerPage,
-	paginate,
-	nextPage,
-	backPage,
+	paginado,
+	page,
 }) {
 	const pageNumbers = [];
+	const numOfPages = Math.ceil(allVideogames / gamesPerPage);
 
-	for (let i = 1; i <= Math.ceil(allVideogames / gamesPerPage); i++) {
+	for (let i = 1; i <= numOfPages; i++) {
 		pageNumbers.push(i);
 	}
 	return (
 		<nav className={s.nav}>
-			<div className={s.pagination}>
-				<button onClick={backPage} className={s.btn}>
-					Prev
-				</button>
+			<ul>
+				{page === 1 || !numOfPages ? (
+					<></>
+				) : (
+					<li className={s.Paginate}>
+						<button
+							className={s.ButPaginate}
+							key='-1'
+							onClick={() => paginado('-')}>
+							◄
+						</button>
+					</li>
+				)}
 				{pageNumbers &&
-					pageNumbers.map((number) => {
-						return (
-							<ul key={number}>
-								<button className={s.pag} onClick={() => paginate(number)}>
-									{number}
-								</button>
-							</ul>
-						);
-					})}
-				<button onClick={nextPage} className={s.btn}>
-					Next
-				</button>
-			</div>
+					pageNumbers.map((number) => (
+						<li className={s.Paginate} key={number}>
+							<button
+								className={number === page ? s.actual : s.ButPaginate}
+								onClick={() => paginado(number)}>
+								{number}
+							</button>
+						</li>
+					))}
+
+				{page === numOfPages || !numOfPages ? (
+					<></>
+				) : (
+					<li className={s.Paginate}>
+						<button
+							className={s.ButPaginate}
+							key='+1'
+							onClick={() => paginado('+')}>
+							►
+						</button>
+					</li>
+				)}
+			</ul>
 		</nav>
 	);
 }
