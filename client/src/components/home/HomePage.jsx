@@ -14,7 +14,7 @@ import {
 } from '../../redux/actions/index';
 // import { Link } from 'react-router-dom';
 import Car from '../card/Car';
-import Paginado from '../paginado/Paginado';
+import Paginado from '../Paginado/Paginado';
 import image from '../../assets/BG-02.png';
 import Loading from '../loading/Loading';
 import NotFound from '../notFound/NotFound';
@@ -23,27 +23,38 @@ export default function HomePage() {
 	const dispatch = useDispatch();
 	const allVideogames = useSelector((state) => state.videogames);
 	const allGenres = useSelector((state) => state.genres);
+	const searchGames = useSelector((state) => state.searchGames2);
+	const search = window.location.search;
 	const [loading, setLoading] = useState(true);
 
 	const [currentPage, setCurrentPage] = useState(1);
-	const [orden, setOrden] = useState('');
+	const [setOrden] = useState('');
 	const [gamesPerPage] = useState(10);
 
 	const indexOfLastGame = currentPage * gamesPerPage;
 	const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-	const currentGames = allVideogames?.slice(indexOfFirstGame, indexOfLastGame);
+	const currentGames = !search.split('=')[1]
+		? allVideogames.slice(indexOfFirstGame, indexOfLastGame)
+		: searchGames.slice(indexOfFirstGame, indexOfLastGame);
 
 	if (allVideogames.length > 0 && loading) {
 		setLoading(false);
 	}
 
-	const paginate = (pageNumber) => setCurrentPage(pageNumber);
-	const netxPage = () => setCurrentPage(currentPage + 1);
-	const backPage = () => {
-		if (currentPage > 1) {
-			setCurrentPage(currentPage - 1);
-		}
+	let paginado = (pageNumber) => {
+		if (typeof pageNumber === 'number') setCurrentPage(pageNumber);
+		else if (pageNumber === '-') setCurrentPage(currentPage - 1);
+		else setCurrentPage(currentPage + 1);
+		window.scrollTo(0, 0);
 	};
+
+	// const paginate = (pageNumber) => setCurrentPage(pageNumber);
+	// const netxPage = () => setCurrentPage(currentPage + 1);
+	// const backPage = () => {
+	// 	if (currentPage > 1) {
+	// 		setCurrentPage(currentPage - 1);
+	// 	}
+	// };
 
 	useEffect(() => {
 		dispatch(getGenres());
@@ -142,10 +153,9 @@ export default function HomePage() {
 			<div>
 				<Paginado
 					gamesPerPage={gamesPerPage}
-					allVideogames={allVideogames.length}
-					paginate={paginate}
-					netPrePage={netxPage}
-					backPrepage={backPage}
+					allVideogames={search ? currentGames.length : allVideogames.length}
+					paginado={paginado}
+					page={currentPage}
 				/>
 			</div>
 
